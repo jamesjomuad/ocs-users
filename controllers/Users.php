@@ -19,6 +19,7 @@ class Users extends Controller
 
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
+    public $context;
 
     public function __construct()
     {
@@ -27,18 +28,6 @@ class Users extends Controller
         BackendMenu::setContext('Ocs.Users', 'users', input('role') ? : 'users');
 
         $this->addCss("/plugins/ocs/users/assets/css/users.css");
-    }
-
-    public function test()
-    {
-        $this->pageTitle = 'Test';
-
-        dd(
-            \Backend\Models\User::find(3)
-            // User::find(3)
-            ->avatar
-            // ->toArray()
-        );
     }
 
     public function index()
@@ -53,6 +42,20 @@ class Users extends Controller
         $this->pageTitle = 'Edit User';
 
         return $this->asExtension('FormController')->update($recordId, $context);
+    }
+
+    public function trashed()
+    {
+        # Menu Context
+        BackendMenu::setContext('Ocs.Users', 'users', 'trashed');
+
+        # Page Title
+        $this->pageTitle = 'Trashed';
+
+        # Set Configs
+        $this->listConfig = 'config_list_trash.yaml';
+
+        $this->asExtension('ListController')->index();
     }
 
     public function formBeforeCreate($model)
@@ -91,6 +94,11 @@ class Users extends Controller
            return $query->withRole(input('role')); 
         }
 
+        if($this->action=='trashed')
+        {
+            return $query->withTrashed();
+        }
+
         return $query->where('id',0);
     }
 
@@ -121,6 +129,11 @@ class Users extends Controller
             'label' => 'Role',
             'url'   => \Backend::url('ocs/users/role'),
             'icon'  => 'icon-user-plus'
+        ]);
+        $sideMenu->put('trashed', [
+            'label' => 'Trashed',
+            'url'   => \Backend::url('ocs/users/users/trashed'),
+            'icon'  => 'icon-trash'
         ]);
 
         return $sideMenu->all();

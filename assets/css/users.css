@@ -1,4 +1,3 @@
-.formRenderField{}
 .formRenderField .pad{
     padding: 20px;
 }
@@ -8,4 +7,8 @@
 .formRenderField .dz-clickable{
     width: 100%!important;
     min-height: 200px!important;
+}
+.control-toolbar .toolbar-item .btn::before{
+    margin: 0;
+    font-size: 18px;
 }
