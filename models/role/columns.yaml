@@ -1,0 +1,18 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: Name
+        searchable: true
+        sortable: true
+    description:
+        label: Description
+        sortable: true
+    users_count:
+        label: backend::lang.user.role.users_count
+        relation: users_count
+        valueFrom: count
+        default: 0
+        sortable: false

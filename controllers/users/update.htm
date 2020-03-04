@@ -1,0 +1,75 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('ocs/users/users') ?>">Users</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+        
+    
+        <div class="layout-row formRenderField">
+            <div class="row row-flush">
+                <div class="col-sm-9">
+                    <div class="pad">
+                        <?= $this->formRenderField('login') ?>
+                        <?= $this->formRenderField('email') ?>
+                        <?= $this->formRenderField('first_name') ?>
+                        <?= $this->formRenderField('last_name') ?>
+                        <?= $this->formRenderField('password') ?>
+                        <?= $this->formRenderField('password_confirmation') ?>
+                    </div>
+                </div>
+                <div class="col-sm-3 sidebar">
+                    <div class="pad">
+                        <?= $this->formRenderField('avatar') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-data="redirect:0"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Saving User..."
+                    class="btn btn-primary">
+                    <u>S</u>ave
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Saving User..."
+                    class="btn btn-default">
+                    Save and Close
+                </button>
+                <button
+                    type="button"
+                    class="oc-icon-trash-o btn-icon danger pull-right"
+                    data-request="onDelete"
+                    data-load-indicator="Deleting User..."
+                    data-request-confirm="Delete this user?">
+                </button>
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('ocs/users/users') ?><?= input('role') ? '?role='.input('role') : '' ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('ocs/users/users') ?><?= input('role') ? '?role='.input('role') : '' ?>" class="btn btn-default">Return to users list</a></p>
+
+<?php endif ?>
+
+

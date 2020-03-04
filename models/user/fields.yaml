@@ -1,0 +1,45 @@
+tabs:
+    defaultTab: backend::lang.user.account
+    icons:
+        backend::lang.user.account: icon-user
+
+    fields:
+        login:
+            span: left
+            label: backend::lang.user.login
+
+        email:
+            span: right
+            type: email
+            label: backend::lang.user.email
+
+        first_name:
+            span: left
+            label: backend::lang.user.first_name
+
+        last_name:
+            span: right
+            label: backend::lang.user.last_name
+
+        password:
+            type: password
+            span: left
+            label: backend::lang.user.password
+
+        password_confirmation:
+            type: password
+            span: right
+            label: backend::lang.user.password_confirmation
+        avatar:
+            label: "Profile Picture"
+            type: fileupload
+            mode: image
+            tab: Profile Image
+            imageHeight: 250
+            imageWidth: 250
+
+        # role:
+        #     context: [create, update]
+        #     label: backend::lang.user.role_field
+        #     commentAbove: backend::lang.user.role_comment
+        #     type: radio

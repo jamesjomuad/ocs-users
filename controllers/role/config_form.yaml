@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Role
+
+# Model Form Field configuration
+form: $/ocs/users/models/role/fields.yaml
+
+# Model Class name
+modelClass: Ocs\Users\Models\Role
+
+# Default redirect location
+defaultRedirect: ocs/users/role
+
+# Create page
+create:
+    title: Create Role
+    redirect: ocs/users/role/update/:id
+    redirectClose: ocs/users/role
+
+# Update page
+update:
+    title: Edit Role
+    redirect: ocs/users/role
+    redirectClose: ocs/users/role
+
+# Preview page
+preview:
+    title: Preview Role

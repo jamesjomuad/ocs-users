@@ -1,0 +1,11 @@
+.formRenderField{}
+.formRenderField .pad{
+    padding: 20px;
+}
+.formRenderField .sidebar{
+    height: 100%;
+}
+.formRenderField .dz-clickable{
+    width: 100%!important;
+    min-height: 200px!important;
+}

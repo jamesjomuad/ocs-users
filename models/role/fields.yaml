@@ -1,0 +1,24 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: Name
+        span: auto
+        required: true
+        commentAbove: The name is displayed in the role list on the Administrator form.
+
+    code:
+        label: Code
+        span: auto
+        dependsOn: name
+        commentAbove: Enter a unique code if you want to access the role object with the API.
+        
+    description:
+        label: Description
+        type: textarea
+        span: full
+
+tabs:
+    stretch: true
