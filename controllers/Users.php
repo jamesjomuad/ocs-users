@@ -5,6 +5,8 @@ use Backend\Classes\Controller;
 use Ocs\Users\Models\User;
 use Ocs\Users\Models\Role;
 use \Carbon\Carbon;
+use Flash;
+use Lang;
 use October\Rain\Exception\ApplicationException;
 
 /**
@@ -96,7 +98,7 @@ class Users extends Controller
 
         if($this->action=='trashed')
         {
-            return $query->withTrashed();
+            return $query->onlyTrashed();
         }
 
         return $query->where('id',0);
@@ -109,6 +111,27 @@ class Users extends Controller
         {
             $list->recordUrl = $list->recordUrl . '?role=' . input('role');
         }
+    }
+
+    public function onHardDelete()
+    {
+        /*
+         * Delete records
+         */
+        $records = User::withTrashed()->find(input('checked'));
+
+        if ($records->count()) {
+            foreach ($records as $record) {
+                $record->forceDelete();
+            }
+
+            Flash::success(Lang::get('backend::lang.list.delete_selected_success'));
+        }
+        else {
+            Flash::error(Lang::get('backend::lang.list.delete_selected_empty'));
+        }
+
+        return $this->listRefresh();
     }
 
     public static function getSideMenus()
