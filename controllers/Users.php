@@ -25,6 +25,11 @@ class Users extends Controller
 
     public function __construct()
     {
+        if(request()->slug=="ocs/users/users/trashed")
+        {
+            $this->listConfig = 'config_list_trash.yaml';
+        }
+        
         parent::__construct();
 
         BackendMenu::setContext('Ocs.Users', 'users', input('role') ? : 'users');
@@ -106,7 +111,7 @@ class Users extends Controller
 
     public function listExtendColumns($list)
     {
-        // avoid redandunt
+        // Add parameter to list url
         if(!str_contains($list->recordUrl,'?role='))
         {
             $list->recordUrl = $list->recordUrl . '?role=' . input('role');
