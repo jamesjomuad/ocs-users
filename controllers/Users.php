@@ -1,9 +1,9 @@
-<?php namespace Ocs\Users\Controllers;
+<?php namespace Bookrr\Users\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
-use Ocs\Users\Models\User;
-use Ocs\Users\Models\Role;
+use Bookrr\Users\Models\User;
+use Bookrr\Users\Models\Role;
 use \Carbon\Carbon;
 use Flash;
 use Lang;
@@ -25,16 +25,16 @@ class Users extends Controller
 
     public function __construct()
     {
-        if(request()->slug=="ocs/users/users/trashed")
+        if(request()->slug=="bookrr/users/users/trashed")
         {
             $this->listConfig = 'config_list_trash.yaml';
         }
         
         parent::__construct();
 
-        BackendMenu::setContext('Ocs.Users', 'users', input('role') ? : 'users');
+        BackendMenu::setContext('Bookrr.Users', 'users', input('role') ? : 'users');
 
-        $this->addCss("/plugins/ocs/users/assets/css/users.css");
+        $this->addCss("/plugins/bookrr/users/assets/css/users.css");
     }
 
     public function index()
@@ -54,7 +54,7 @@ class Users extends Controller
     public function trashed()
     {
         # Menu Context
-        BackendMenu::setContext('Ocs.Users', 'users', 'trashed');
+        BackendMenu::setContext('Bookrr.Users', 'users', 'trashed');
 
         # Page Title
         $this->pageTitle = 'Trashed';
@@ -80,17 +80,17 @@ class Users extends Controller
 
         if(input('close') AND input('role'))
         {
-            return \Backend::redirect(input('role') ? "ocs/users/users?role=".input('role') : '');
+            return \Backend::redirect(input('role') ? "bookrr/users/users?role=".input('role') : '');
         }
     }
 
     public function update_onSave($context = null)
-    {
+    { 
         parent::update_onSave($context);
 
         if(input('close') AND input('role'))
         {
-            return \Backend::redirect(input('role') ? "ocs/users/users?role=".input('role') : '');
+            return \Backend::redirect(input('role') ? "bookrr/users/users?role=".input('role') : '');
         }
     }
 
@@ -118,7 +118,7 @@ class Users extends Controller
         }
     }
 
-    public function onHardDelete()
+    public function onHardDelete ()
     {
         /*
          * Delete records
@@ -148,23 +148,47 @@ class Users extends Controller
         $sideMenu = $role->map(function ($item, $key) {
             return [
                 'label' => $item,
-                'url'   => \Backend::url('ocs/users/users?role='.$key),
+                'url'   => \Backend::url('bookrr/users/users?role='.$key),
                 'icon'  => 'icon-user-circle-o',
             ];
         });
 
         $sideMenu->put('role', [
             'label' => 'Role',
-            'url'   => \Backend::url('ocs/users/role'),
+            'url'   => \Backend::url('bookrr/users/role'),
             'icon'  => 'icon-user-plus'
         ]);
         $sideMenu->put('trashed', [
             'label' => 'Trashed',
-            'url'   => \Backend::url('ocs/users/users/trashed'),
+            'url'   => \Backend::url('bookrr/users/users/trashed'),
             'icon'  => 'icon-trash'
         ]);
 
         return $sideMenu->all();
     }
 
+    public function seedUser()
+    {
+        $faker = \Faker\Factory::create();
+
+        foreach(range(0,100) as $key=>$item)
+        {
+            $data = [
+                'email'         => $faker->email ,
+                'first_name'    => $fn = $faker->firstName ,
+                'last_name'     => $ln = $faker->lastName ,
+                'password'      => "asdasd" ,
+                'password_confirmation' => "asdasd" ,
+                'login'         => $fn.$ln
+            ];
+
+            if($user = User::create($data))
+            {
+                $user->role_id = rand(0,6);
+                dump([$key,$user->save()]);
+            }
+        }
+        
+        return false;
+    }
 }

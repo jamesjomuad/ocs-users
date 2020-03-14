@@ -1,4 +1,4 @@
-<?php namespace Ocs\Users\Controllers;
+<?php namespace Bookrr\Users\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
@@ -20,11 +20,11 @@ class Role extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Ocs.Users', 'users', 'role');
+        BackendMenu::setContext('Bookrr.Users', 'users', 'role');
 
-        $this->addCss("/plugins/ocs/users/assets/css/animate.css");
-        $this->addCss("/plugins/ocs/users/assets/css/role.css");
-        $this->addJs("/plugins/ocs/users/assets/js/script.js");
+        $this->addCss("/plugins/bookrr/users/assets/css/animate.css");
+        $this->addCss("/plugins/bookrr/users/assets/css/role.css");
+        $this->addJs("/plugins/bookrr/users/assets/js/script.js");
     }
 
     public function formExtendFields($form)

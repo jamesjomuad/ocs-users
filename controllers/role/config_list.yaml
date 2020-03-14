@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/ocs/users/models/role/columns.yaml
+list: $/bookrr/users/models/role/columns.yaml
 
 # Model Class name
-modelClass: Ocs\Users\Models\Role
+modelClass: Bookrr\Users\Models\Role
 
 # List Title
 title: Manage Roles
 
 # Link URL for each record
-recordUrl: ocs/users/role/update/:id
+recordUrl: bookrr/users/role/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

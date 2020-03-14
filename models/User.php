@@ -1,4 +1,4 @@
-<?php namespace Ocs\Users\Models;
+<?php namespace Bookrr\Users\Models;
 
 use Model;
 

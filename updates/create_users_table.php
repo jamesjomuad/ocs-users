@@ -1,4 +1,4 @@
-<?php namespace Ocs\Users\Updates;
+<?php namespace Bookrr\Users\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -8,7 +8,7 @@ class CreateUsersTable extends Migration
 {
     public function up()
     {
-        Schema::create('ocs_users_users', function (Blueprint $table) {
+        Schema::create('bookrr_users_users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index()->nullable();
@@ -26,6 +26,6 @@ class CreateUsersTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('ocs_users_users');
+        Schema::dropIfExists('bookrr_users_users');
     }
 }

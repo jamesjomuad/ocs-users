@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/ocs/users/models/user/columns_trashed.yaml
+list: $/bookrr/users/models/user/columns_trashed.yaml
 
 # Model Class name
-modelClass: Ocs\Users\Models\User
+modelClass: Bookrr\Users\Models\User
 
 # List Title
 title: Manage Users
 
 # Link URL for each record
-recordUrl: ocs/users/users/update/:id
+recordUrl: bookrr/users/users/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

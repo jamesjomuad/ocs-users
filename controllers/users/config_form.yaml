@@ -6,25 +6,25 @@
 name: User
 
 # Model Form Field configuration
-form: $/ocs/users/models/user/fields.yaml
+form: $/bookrr/users/models/user/fields.yaml
 
 # Model Class name
 modelClass: \Backend\Models\User
 
 # Default redirect location
-defaultRedirect: ocs/users/users
+defaultRedirect: bookrr/users/users
 
 # Create page
 create:
     title: Create User
-    redirect: ocs/users/users/update/:id
-    redirectClose: ocs/users/users
+    redirect: bookrr/users/users/update/:id
+    redirectClose: bookrr/users/users
 
 # Update page
 update:
     title: Edit User
-    redirect: ocs/users/users
-    redirectClose: ocs/users/users
+    redirect: bookrr/users/users
+    redirectClose: bookrr/users/users
 
 # Preview page
 preview:

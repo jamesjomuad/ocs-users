@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('ocs/users/users') ?>">Users</a></li>
+        <li><a href="<?= Backend::url('bookrr/users/users') ?>">Users</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -11,7 +11,7 @@
 
         <div class="layout-row formRenderField">
             <div class="row row-flush">
-                <div class="col-sm-9">
+                <div class="col-sm-10">
                     <div class="pad">
                         <?= $this->formRenderField('login') ?>
                         <?= $this->formRenderField('email') ?>
@@ -21,7 +21,7 @@
                         <?= $this->formRenderField('password_confirmation') ?>
                     </div>
                 </div>
-                <div class="col-sm-3 sidebar">
+                <div class="col-sm-2 sidebar">
                     <div class="pad">
                         <?= $this->formRenderField('avatar') ?>
                     </div>
@@ -49,7 +49,7 @@
                     Create and Close
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('ocs/users/users') ?>">Cancel</a>
+                    or <a href="<?= Backend::url('bookrr/users/users') ?>">Cancel</a>
                 </span>
             </div>
         </div>
@@ -59,6 +59,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('ocs/users/users') ?>" class="btn btn-default">Return to users list</a></p>
+    <p><a href="<?= Backend::url('bookrr/users/users') ?>" class="btn btn-default">Return to users list</a></p>
 
 <?php endif ?>

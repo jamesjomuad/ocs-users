@@ -1,4 +1,4 @@
-<?php namespace Ocs\Users;
+<?php namespace Bookrr\Users;
 
 use Backend;
 use System\Classes\PluginBase;
@@ -26,6 +26,22 @@ class Plugin extends PluginBase
 
     public function boot()
     {
+        if(!app()->runningInBackend()){
+            return;
+        }
+
+        Event::listen('translator.beforeResolve', function ($key, $replaces, $locale) {
+            switch ($key) {
+                case 'backend::lang.account.login_placeholder':
+                    return 'Username';
+                case 'backend::lang.account.password_placeholder':
+                    return 'Password';
+                case 'backend::lang.user.menu_label':
+                    return 'Users';
+                case 'backend::lang.user.menu_description':
+                    return 'Manage all users';
+            }
+        });
 
     }
 
@@ -43,7 +59,7 @@ class Plugin extends PluginBase
         return []; // Remove this line to activate
 
         return [
-            'ocs.user.some_permission' => [
+            'bookrr.user.some_permission' => [
                 'tab' => 'user',
                 'label' => 'Some permission'
             ],
@@ -55,12 +71,12 @@ class Plugin extends PluginBase
         return [
             'users' => [
                 'label'       => 'Users',
-                'url'         => Backend::url('ocs/users/users?role=operations'),
+                'url'         => Backend::url('bookrr/users/users?role=operations'),
                 'icon'        => 'icon-users',
-                'permissions' => ['ocs.user.*'],
+                'permissions' => ['bookrr.user.*'],
                 'order'       => 920,
 
-                'sideMenu' => \Ocs\Users\Controllers\Users::getSideMenus()
+                'sideMenu' => \Bookrr\Users\Controllers\Users::getSideMenus()
             ]
         ];
     }
