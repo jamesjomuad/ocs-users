@@ -3,7 +3,7 @@
 # ===================================
 
 # Model List Column configuration
-list: $/bookrr/users/models/user/columns.yaml
+list: $/bookrr/users/models/user/columns_trashed.yaml
 
 # Model Class name
 modelClass: Bookrr\Users\Models\User
@@ -40,8 +40,10 @@ showCheckboxes: true
 # Toolbar widget configuration
 toolbar:
     # Partial for toolbar buttons
-    buttons: list_toolbar
+    buttons: list_toolbar_trash
 
     # Search widget configuration
     search:
         prompt: backend::lang.list.search_prompt
+
+recordOnClick: return false

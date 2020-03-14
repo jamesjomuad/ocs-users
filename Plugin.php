@@ -1,4 +1,4 @@
-<?php namespace Ocs\Users;
+<?php namespace Bookrr\Users;
 
 use Backend;
 use System\Classes\PluginBase;
@@ -26,78 +26,23 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        # Extend User
-        UserModel::extend(function($model){
-            # Extend Relations
-            $model->hasOne['customer']  = [
-                '\Bookrr\User\Models\Customers',
-                'delete' => true
-            ];
-            $model->hasOne['staff']  = [
-                '\Bookrr\User\Models\Staff',
-                'delete' => true
-            ];
-            $model->hasMany['vehicles']  = [
-                '\Bookrr\User\Models\Vehicle',
-                'delete' => true
-            ];
+        if(!app()->runningInBackend()){
+            return;
+        }
 
-            # Extend Mehod
-            $model->addDynamicMethod('isCustomer',function() use($model) {
-                return $model->role->code=='customer' ? true : false;
-            });
-
-            return $model;
-        });
-
-        # Extend User fields
-        UserController::extendFormFields(function($form, $model, $context){
-
-            if(BackendAuth::getUser()->isCustomer())
-            {
-                $form->addTabFields([
-                    'customer[phone]' => [
-                        'label' => 'Phone Number',
-                        'span'  => 'auto',
-                        'tab'   => 'Profile'
-                    ],
-                    'customer[address]' => [
-                        'label' => 'Company',
-                        'span'  => 'auto',
-                        'tab'   => 'Profile'
-                    ],
-                    'customer[gender]' => [
-                        'label' => 'Gender',
-                        'type'  => 'dropdown',
-                        'span'  => 'auto',
-                        'tab'   => 'Profile',
-                        'emptyOption' => 'None',
-                        'options'=> [
-                            'male' => 'Male',
-                            'female' => 'Female'
-                        ]
-                    ],
-                    'customer[birth]' => [
-                        'label' => 'Birthdate',
-                        'type'  => 'datetimepicker',
-                        'mode'  => 'date',
-                        'span'  => 'auto',
-                        'tab'   => 'Profile'
-                    ]
-                ]);
+        Event::listen('translator.beforeResolve', function ($key, $replaces, $locale) {
+            switch ($key) {
+                case 'backend::lang.account.login_placeholder':
+                    return 'Username';
+                case 'backend::lang.account.password_placeholder':
+                    return 'Password';
+                case 'backend::lang.user.menu_label':
+                    return 'Users';
+                case 'backend::lang.user.menu_description':
+                    return 'Manage all users';
             }
-            
         });
-        
-        # Event
-        Event::listen('backend.page.beforeDisplay', function($controller, $action, $params) {
 
-            if(BackendAuth::check() AND BackendAuth::getUser()->isCustomer())
-            {
-                $controller->addCss('/plugins/ocs/user/assets/css/customer.css');
-            }
-
-        });
     }
 
     public function registerComponents()
@@ -114,7 +59,7 @@ class Plugin extends PluginBase
         return []; // Remove this line to activate
 
         return [
-            'ocs.user.some_permission' => [
+            'bookrr.user.some_permission' => [
                 'tab' => 'user',
                 'label' => 'Some permission'
             ],
@@ -126,12 +71,12 @@ class Plugin extends PluginBase
         return [
             'users' => [
                 'label'       => 'Users',
-                'url'         => Backend::url('ocs/users/users?role=operations'),
+                'url'         => Backend::url('bookrr/users/users?role=operations'),
                 'icon'        => 'icon-users',
-                'permissions' => ['ocs.user.*'],
+                'permissions' => ['bookrr.user.*'],
                 'order'       => 920,
 
-                'sideMenu' => \Ocs\Users\Controllers\Users::getSideMenus()
+                'sideMenu' => \Bookrr\Users\Controllers\Users::getSideMenus()
             ]
         ];
     }

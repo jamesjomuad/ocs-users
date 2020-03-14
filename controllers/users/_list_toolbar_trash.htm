@@ -1,17 +1,11 @@
 <div data-control="toolbar">
-    <a
-        href="<?= Backend::url('bookrr/users/users/create') ?><?= input('role')? '?role='.input('role') : '' ?>"
-        class="btn btn-primary oc-icon-plus">
-        New <?= input('role')?title_case(input('role')):'User' ?>
-    </a>
-
     <button
         class="btn btn-danger oc-icon-trash-o"
         disabled="disabled"
         style=" padding: 8px 10px; text-align: center; float: right; "
         onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
-        data-request="onDelete"
-        data-request-confirm="Are you sure you want to delete the selected Users?"
+        data-request="onHardDelete"
+        data-request-confirm="Delete User/s forever?"
         data-trigger-action="enable"
         data-trigger=".control-list input[type=checkbox]"
         data-trigger-condition="checked"
