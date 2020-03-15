@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('bookrr/users/users') ?>">Users</a></li>
+        <li><a href="<?= Backend::url('jlab/users/users') ?>">Users</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -49,7 +49,7 @@
                     Create and Close
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('bookrr/users/users') ?>">Cancel</a>
+                    or <a href="<?= Backend::url('jlab/users/users') ?>">Cancel</a>
                 </span>
             </div>
         </div>
@@ -59,6 +59,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('bookrr/users/users') ?>" class="btn btn-default">Return to users list</a></p>
+    <p><a href="<?= Backend::url('jlab/users/users') ?>" class="btn btn-default">Return to users list</a></p>
 
 <?php endif ?>

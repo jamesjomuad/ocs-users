@@ -1,4 +1,4 @@
-<?php namespace Bookrr\Users;
+<?php namespace Jlab\Users;
 
 use Backend;
 use System\Classes\PluginBase;
@@ -17,9 +17,9 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'Bookrr User',
-            'description' => 'Bookrr extended user fields.',
-            'author'      => 'bookrr',
+            'name'        => 'Jlab User',
+            'description' => 'Jlab extended user fields.',
+            'author'      => 'jlab',
             'icon'        => 'icon-leaf'
         ];
     }
@@ -49,8 +49,8 @@ class Plugin extends PluginBase
     {
         return [];
         return [
-            'Bookrr\User\Components\Register' => 'Register',
-            'Bookrr\User\Components\Login'    => 'Login'
+            'Jlab\User\Components\Register' => 'Register',
+            'Jlab\User\Components\Login'    => 'Login'
         ];
     }
 
@@ -59,7 +59,7 @@ class Plugin extends PluginBase
         return []; // Remove this line to activate
 
         return [
-            'bookrr.user.some_permission' => [
+            'jlab.user.some_permission' => [
                 'tab' => 'user',
                 'label' => 'Some permission'
             ],
@@ -71,12 +71,12 @@ class Plugin extends PluginBase
         return [
             'users' => [
                 'label'       => 'Users',
-                'url'         => Backend::url('bookrr/users/users?role=operations'),
+                'url'         => Backend::url('jlab/users/users?role=operations'),
                 'icon'        => 'icon-users',
-                'permissions' => ['bookrr.user.*'],
+                'permissions' => ['jlab.user.*'],
                 'order'       => 920,
 
-                'sideMenu' => \Bookrr\Users\Controllers\Users::getSideMenus()
+                'sideMenu' => \Jlab\Users\Controllers\Users::getSideMenus()
             ]
         ];
     }

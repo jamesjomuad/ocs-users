@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/bookrr/users/models/role/columns.yaml
+list: $/jlab/users/models/role/columns.yaml
 
 # Model Class name
-modelClass: Bookrr\Users\Models\Role
+modelClass: Jlab\Users\Models\Role
 
 # List Title
 title: Manage Roles
 
 # Link URL for each record
-recordUrl: bookrr/users/role/update/:id
+recordUrl: jlab/users/role/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

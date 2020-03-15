@@ -6,25 +6,25 @@
 name: User
 
 # Model Form Field configuration
-form: $/bookrr/users/models/user/fields.yaml
+form: $/jlab/users/models/user/fields.yaml
 
 # Model Class name
 modelClass: \Backend\Models\User
 
 # Default redirect location
-defaultRedirect: bookrr/users/users
+defaultRedirect: jlab/users/users
 
 # Create page
 create:
     title: Create User
-    redirect: bookrr/users/users/update/:id
-    redirectClose: bookrr/users/users
+    redirect: jlab/users/users/update/:id
+    redirectClose: jlab/users/users
 
 # Update page
 update:
     title: Edit User
-    redirect: bookrr/users/users
-    redirectClose: bookrr/users/users
+    redirect: jlab/users/users
+    redirectClose: jlab/users/users
 
 # Preview page
 preview:

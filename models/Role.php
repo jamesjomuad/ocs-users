@@ -1,4 +1,4 @@
-<?php namespace Bookrr\Users\Models;
+<?php namespace Jlab\Users\Models;
 
 use Model;
 
