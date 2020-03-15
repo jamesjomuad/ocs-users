@@ -6,25 +6,25 @@
 name: Role
 
 # Model Form Field configuration
-form: $/bookrr/users/models/role/fields.yaml
+form: $/jlab/users/models/role/fields.yaml
 
 # Model Class name
-modelClass: Bookrr\Users\Models\Role
+modelClass: Jlab\Users\Models\Role
 
 # Default redirect location
-defaultRedirect: bookrr/users/role
+defaultRedirect: jlab/users/role
 
 # Create page
 create:
     title: Create Role
-    redirect: bookrr/users/role/update/:id
-    redirectClose: bookrr/users/role
+    redirect: jlab/users/role/update/:id
+    redirectClose: jlab/users/role
 
 # Update page
 update:
     title: Edit Role
-    redirect: bookrr/users/role
-    redirectClose: bookrr/users/role
+    redirect: jlab/users/role
+    redirectClose: jlab/users/role
 
 # Preview page
 preview:

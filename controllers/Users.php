@@ -1,9 +1,9 @@
-<?php namespace Bookrr\Users\Controllers;
+<?php namespace Jlab\Users\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
-use Bookrr\Users\Models\User;
-use Bookrr\Users\Models\Role;
+use Jlab\Users\Models\User;
+use Jlab\Users\Models\Role;
 use \Carbon\Carbon;
 use Flash;
 use Lang;
@@ -25,16 +25,16 @@ class Users extends Controller
 
     public function __construct()
     {
-        if(request()->slug=="bookrr/users/users/trashed")
+        if(request()->slug=="jlab/users/users/trashed")
         {
             $this->listConfig = 'config_list_trash.yaml';
         }
         
         parent::__construct();
 
-        BackendMenu::setContext('Bookrr.Users', 'users', input('role') ? : 'users');
+        BackendMenu::setContext('Jlab.Users', 'users', input('role') ? : 'users');
 
-        $this->addCss("/plugins/bookrr/users/assets/css/users.css");
+        $this->addCss("/plugins/jlab/users/assets/css/users.css");
     }
 
     public function index()
@@ -54,7 +54,7 @@ class Users extends Controller
     public function trashed()
     {
         # Menu Context
-        BackendMenu::setContext('Bookrr.Users', 'users', 'trashed');
+        BackendMenu::setContext('Jlab.Users', 'users', 'trashed');
 
         # Page Title
         $this->pageTitle = 'Trashed';
@@ -80,7 +80,7 @@ class Users extends Controller
 
         if(input('close') AND input('role'))
         {
-            return \Backend::redirect(input('role') ? "bookrr/users/users?role=".input('role') : '');
+            return \Backend::redirect(input('role') ? "jlab/users/users?role=".input('role') : '');
         }
     }
 
@@ -90,7 +90,7 @@ class Users extends Controller
 
         if(input('close') AND input('role'))
         {
-            return \Backend::redirect(input('role') ? "bookrr/users/users?role=".input('role') : '');
+            return \Backend::redirect(input('role') ? "jlab/users/users?role=".input('role') : '');
         }
     }
 
@@ -148,19 +148,19 @@ class Users extends Controller
         $sideMenu = $role->map(function ($item, $key) {
             return [
                 'label' => $item,
-                'url'   => \Backend::url('bookrr/users/users?role='.$key),
+                'url'   => \Backend::url('jlab/users/users?role='.$key),
                 'icon'  => 'icon-user-circle-o',
             ];
         });
 
         $sideMenu->put('role', [
             'label' => 'Role',
-            'url'   => \Backend::url('bookrr/users/role'),
+            'url'   => \Backend::url('jlab/users/role'),
             'icon'  => 'icon-user-plus'
         ]);
         $sideMenu->put('trashed', [
             'label' => 'Trashed',
-            'url'   => \Backend::url('bookrr/users/users/trashed'),
+            'url'   => \Backend::url('jlab/users/users/trashed'),
             'icon'  => 'icon-trash'
         ]);
 

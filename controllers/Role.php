@@ -1,4 +1,4 @@
-<?php namespace Bookrr\Users\Controllers;
+<?php namespace Jlab\Users\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
@@ -20,11 +20,11 @@ class Role extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Bookrr.Users', 'users', 'role');
+        BackendMenu::setContext('Jlab.Users', 'users', 'role');
 
-        $this->addCss("/plugins/bookrr/users/assets/css/animate.css");
-        $this->addCss("/plugins/bookrr/users/assets/css/role.css");
-        $this->addJs("/plugins/bookrr/users/assets/js/script.js");
+        $this->addCss("/plugins/jlab/users/assets/css/animate.css");
+        $this->addCss("/plugins/jlab/users/assets/css/role.css");
+        $this->addJs("/plugins/jlab/users/assets/js/script.js");
     }
 
     public function formExtendFields($form)

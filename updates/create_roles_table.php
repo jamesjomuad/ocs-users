@@ -1,4 +1,4 @@
-<?php namespace Bookrr\Users\Updates;
+<?php namespace Jlab\Users\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -8,7 +8,7 @@ class CreateRolesTable extends Migration
 {
     public function up()
     {
-        Schema::create('bookrr_users_roles', function (Blueprint $table) {
+        Schema::create('jlab_users_roles', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
@@ -17,6 +17,6 @@ class CreateRolesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('bookrr_users_roles');
+        Schema::dropIfExists('jlab_users_roles');
     }
 }
