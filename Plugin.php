@@ -5,8 +5,8 @@ use System\Classes\PluginBase;
 use Backend\Models\User as UserModel;
 use Backend\Models\UserRole;
 use Backend\Controllers\Users as UserController;
-use BackendAuth;
 use Event;
+
 
 
 class Plugin extends PluginBase
@@ -26,6 +26,7 @@ class Plugin extends PluginBase
 
     public function boot()
     {
+        // Avoid run on artisan or cron
         if(!app()->runningInBackend()){
             return;
         }
@@ -33,7 +34,7 @@ class Plugin extends PluginBase
         Event::listen('translator.beforeResolve', function ($key, $replaces, $locale) {
             switch ($key) {
                 case 'backend::lang.account.login_placeholder':
-                    return 'Username';
+                    return 'Username/Email';
                 case 'backend::lang.account.password_placeholder':
                     return 'Password';
                 case 'backend::lang.user.menu_label':
@@ -41,6 +42,14 @@ class Plugin extends PluginBase
                 case 'backend::lang.user.menu_description':
                     return 'Manage all users';
             }
+        });
+
+        UserModel::extend(function($model){
+            # Extend Mehod
+            $model->addDynamicMethod('findUserByEmail',function($email) use($model) {
+                return $model->where('email',$email)->first();
+            });
+            return $model;
         });
 
     }

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Auth
+
+# Model Form Field configuration
+form: $/jlab/users/models/auth/fields.yaml
+
+# Model Class name
+modelClass: Jlab\Users\Models\Auth
+
+# Default redirect location
+defaultRedirect: jlab/users/auth
+
+# Create page
+create:
+    title: Create Auth
+    redirect: jlab/users/auth/update/:id
+    redirectClose: jlab/users/auth
+
+# Update page
+update:
+    title: Edit Auth
+    redirect: jlab/users/auth
+    redirectClose: jlab/users/auth
+
+# Preview page
+preview:
+    title: Preview Auth
