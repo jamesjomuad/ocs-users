@@ -167,28 +167,4 @@ class Users extends Controller
         return $sideMenu->all();
     }
 
-    public function seedUser()
-    {
-        $faker = \Faker\Factory::create();
-
-        foreach(range(0,100) as $key=>$item)
-        {
-            $data = [
-                'email'         => $faker->email ,
-                'first_name'    => $fn = $faker->firstName ,
-                'last_name'     => $ln = $faker->lastName ,
-                'password'      => "asdasd" ,
-                'password_confirmation' => "asdasd" ,
-                'login'         => $fn.$ln
-            ];
-
-            if($user = User::create($data))
-            {
-                $user->role_id = rand(0,6);
-                dump([$key,$user->save()]);
-            }
-        }
-        
-        return false;
-    }
 }
