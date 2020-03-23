@@ -15,4 +15,5 @@ class User extends \Backend\Models\User
             $q->where('code',$role);
         });
     }
+
 }
