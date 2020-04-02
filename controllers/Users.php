@@ -145,7 +145,7 @@ class Users extends Controller
         /*
          * Delete records
          */
-        $records = User::withTrashed()->find(input('checked'));
+        $records = \Backend\Models\User::withTrashed()->find(input('checked'));
 
         if ($records->count()) {
             foreach ($records as $record) {
