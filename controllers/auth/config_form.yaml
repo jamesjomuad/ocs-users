@@ -6,25 +6,25 @@
 name: Auth
 
 # Model Form Field configuration
-form: $/jlab/users/models/auth/fields.yaml
+form: $/ocs/users/models/auth/fields.yaml
 
 # Model Class name
-modelClass: Jlab\Users\Models\Auth
+modelClass: Ocs\Users\Models\Auth
 
 # Default redirect location
-defaultRedirect: jlab/users/auth
+defaultRedirect: ocs/users/auth
 
 # Create page
 create:
     title: Create Auth
-    redirect: jlab/users/auth/update/:id
-    redirectClose: jlab/users/auth
+    redirect: ocs/users/auth/update/:id
+    redirectClose: ocs/users/auth
 
 # Update page
 update:
     title: Edit Auth
-    redirect: jlab/users/auth
-    redirectClose: jlab/users/auth
+    redirect: ocs/users/auth
+    redirectClose: ocs/users/auth
 
 # Preview page
 preview:

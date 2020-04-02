@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/jlab/users/models/auth/columns.yaml
+list: $/ocs/users/models/auth/columns.yaml
 
 # Model Class name
-modelClass: Jlab\Users\Models\Auth
+modelClass: Ocs\Users\Models\Auth
 
 # List Title
 title: Manage Auths
 
 # Link URL for each record
-recordUrl: jlab/users/auth/update/:id
+recordUrl: ocs/users/auth/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

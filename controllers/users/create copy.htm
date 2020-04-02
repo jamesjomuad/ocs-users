@@ -1,0 +1,64 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('ocs/users/users') ?>">Users</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row formRenderField">
+            <div class="row row-flush">
+                <div class="col-sm-10">
+                    <div class="pad">
+                        <?= $this->formRenderField('login') ?>
+                        <?= $this->formRenderField('email') ?>
+                        <?= $this->formRenderField('first_name') ?>
+                        <?= $this->formRenderField('last_name') ?>
+                        <?= $this->formRenderField('password') ?>
+                        <?= $this->formRenderField('password_confirmation') ?>
+                    </div>
+                </div>
+                <div class="col-sm-2 sidebar">
+                    <div class="pad">
+                        <?= $this->formRenderField('avatar') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Creating User..."
+                    class="btn btn-primary">
+                    Create
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="Creating User..."
+                    class="btn btn-default">
+                    Create and Close
+                </button>
+                <span class="btn-text">
+                    or <a href="<?= Backend::url('ocs/users/users') ?>">Cancel</a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+
+    <p class="flash-message static error"><?= e($this->fatalError) ?></p>
+    <p><a href="<?= Backend::url('ocs/users/users') ?>" class="btn btn-default">Return to users list</a></p>
+
+<?php endif ?>

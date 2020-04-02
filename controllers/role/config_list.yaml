@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/jlab/users/models/role/columns.yaml
+list: $/ocs/users/models/role/columns.yaml
 
 # Model Class name
-modelClass: Jlab\Users\Models\Role
+modelClass: Ocs\Users\Models\Role
 
 # List Title
 title: Manage Roles
 
 # Link URL for each record
-recordUrl: jlab/users/role/update/:id
+recordUrl: ocs/users/role/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

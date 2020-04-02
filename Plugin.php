@@ -1,4 +1,4 @@
-<?php namespace Jlab\Users;
+<?php namespace Ocs\Users;
 
 use Backend;
 use System\Classes\PluginBase;
@@ -17,9 +17,9 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'Jlab User',
-            'description' => 'Jlab extended user fields.',
-            'author'      => 'jlab',
+            'name'        => 'Ocs User',
+            'description' => 'Ocs extended user fields.',
+            'author'      => 'ocs',
             'icon'        => 'icon-leaf'
         ];
     }
@@ -45,22 +45,28 @@ class Plugin extends PluginBase
         });
 
         UserModel::extend(function($model){
+            # Relations
+            $model->hasOne['ocsUser']  = [
+                'Ocs\Users\Models\User'
+            ];
+
             # Extend Mehod
-            $model->addDynamicMethod('findUserByEmail',function($email) use($model) {
+            $model->addDynamicMethod('findUserByEmail',function($email) use($model)
+            {
                 return $model->where('email',$email)->first();
             });
+
+            $model->addDynamicMethod('scopeWithRole',function($query,$role)
+            {
+                return $query->whereHas('role',function($q) use($role) {
+                    $q->where('code',$role);
+                });
+            });
+            
+
             return $model;
         });
 
-    }
-
-    public function registerComponents()
-    {
-        return [];
-        return [
-            'Jlab\User\Components\Register' => 'Register',
-            'Jlab\User\Components\Login'    => 'Login'
-        ];
     }
 
     public function registerPermissions()
@@ -68,7 +74,7 @@ class Plugin extends PluginBase
         return []; // Remove this line to activate
 
         return [
-            'jlab.user.some_permission' => [
+            'ocs.user.some_permission' => [
                 'tab' => 'user',
                 'label' => 'Some permission'
             ],
@@ -80,12 +86,12 @@ class Plugin extends PluginBase
         return [
             'users' => [
                 'label'       => 'Users',
-                'url'         => Backend::url('jlab/users/users?role=operations'),
+                'url'         => Backend::url('ocs/users/users?role=operations'),
                 'icon'        => 'icon-users',
-                'permissions' => ['jlab.user.*'],
+                'permissions' => ['ocs.user.*'],
                 'order'       => 920,
 
-                'sideMenu' => \Jlab\Users\Controllers\Users::getSideMenus()
+                'sideMenu' => \Ocs\Users\Controllers\Users::getSideMenus()
             ]
         ];
     }

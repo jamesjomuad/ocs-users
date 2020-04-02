@@ -1,4 +1,4 @@
-<?php namespace Jlab\Users\Controllers;
+<?php namespace Ocs\Users\Controllers;
 
 use BackendMenu;
 use BackendAuth;

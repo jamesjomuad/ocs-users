@@ -6,25 +6,25 @@
 name: User
 
 # Model Form Field configuration
-form: $/jlab/users/models/user/fields.yaml
+form: $/ocs/users/models/user/fields.yaml
 
 # Model Class name
 modelClass: \Backend\Models\User
 
 # Default redirect location
-defaultRedirect: jlab/users/users
+defaultRedirect: ocs/users/users
 
 # Create page
 create:
     title: Create User
-    redirect: jlab/users/users/update/:id
-    redirectClose: jlab/users/users
+    redirect: ocs/users/users/update/:id
+    redirectClose: ocs/users/users
 
 # Update page
 update:
     title: Edit User
-    redirect: jlab/users/users
-    redirectClose: jlab/users/users
+    redirect: ocs/users/users
+    redirectClose: ocs/users/users
 
 # Preview page
 preview:
