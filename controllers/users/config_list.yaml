@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/jlab/users/models/user/columns.yaml
+list: $/ocs/users/models/user/columns.yaml
 
 # Model Class name
-modelClass: Jlab\Users\Models\User
+modelClass: Backend\Models\User
 
 # List Title
 title: Manage Users
 
 # Link URL for each record
-recordUrl: jlab/users/users/update/:id
+recordUrl: ocs/users/users/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

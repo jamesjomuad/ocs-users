@@ -1,1 +1,4 @@
-1.0.1: First version of BOOKRR Users
+1.0.1: First version of OCS Users
+1.0.2:
+ - 'Create OCS User table'
+ - create_users_table.php

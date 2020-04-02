@@ -1,4 +1,4 @@
-<?php namespace Jlab\Users\Updates;
+<?php namespace Ocs\Users\Updates;
 
 use Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -8,24 +8,22 @@ class CreateUsersTable extends Migration
 {
     public function up()
     {
-        Schema::create('jlab_users_users', function (Blueprint $table) {
+        Schema::create('ocs_users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->string('id_number')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('status')->nullable();
             $table->string('gender',30)->nullable();
             $table->date('birth')->nullable();
-            $table->text('options')->nullable();
-            $table->decimal('balance', 15, 2)->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('jlab_users_users');
+        Schema::dropIfExists('ocs_users');
     }
 }

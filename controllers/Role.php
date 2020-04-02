@@ -1,4 +1,4 @@
-<?php namespace Jlab\Users\Controllers;
+<?php namespace Ocs\Users\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
@@ -20,11 +20,11 @@ class Role extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Jlab.Users', 'users', 'role');
+        BackendMenu::setContext('Ocs.Users', 'users', 'role');
 
-        $this->addCss("/plugins/jlab/users/assets/css/animate.css");
-        $this->addCss("/plugins/jlab/users/assets/css/role.css");
-        $this->addJs("/plugins/jlab/users/assets/js/script.js");
+        $this->addCss("/plugins/ocs/users/assets/css/animate.css");
+        $this->addCss("/plugins/ocs/users/assets/css/role.css");
+        $this->addJs("/plugins/ocs/users/assets/js/script.js");
     }
 
     public function formExtendFields($form)

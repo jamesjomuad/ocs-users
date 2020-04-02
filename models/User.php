@@ -1,18 +1,20 @@
-<?php namespace Jlab\Users\Models;
+<?php namespace Ocs\Users\Models;
 
 use Model;
+// use \Backend\Models\User;
 
 /**
  * User Model
  */
-class User extends \Backend\Models\User
+class User extends Model
 {
-    use \October\Rain\Database\Traits\SoftDelete;
+    // use \October\Rain\Database\Traits\SoftDelete;
 
-    public function scopeWithRole($query,$role)
-    {
-        return $query->whereHas('role',function($q) use($role) {
-            $q->where('code',$role);
-        });
-    }
+    public $table = 'ocs_users';
+
+    protected $guarded = ['*'];
+
+    protected $fillable = [];
+
+    public $rules = [];
 }

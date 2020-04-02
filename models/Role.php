@@ -1,4 +1,4 @@
-<?php namespace Jlab\Users\Models;
+<?php namespace Ocs\Users\Models;
 
 use Model;
 

@@ -1,9 +1,9 @@
-<?php namespace Jlab\Users\Controllers;
+<?php namespace Ocs\Users\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;
-use Jlab\Users\Models\User;
-use Jlab\Users\Models\Role;
+use Ocs\Users\Models\User as UserModel;
+use Ocs\Users\Models\Role as RoleModel;
 use \Carbon\Carbon;
 use Flash;
 use Lang;
@@ -25,16 +25,16 @@ class Users extends Controller
 
     public function __construct()
     {
-        if(request()->slug=="jlab/users/users/trashed")
+        if(request()->slug=="ocs/users/users/trashed")
         {
             $this->listConfig = 'config_list_trash.yaml';
         }
         
         parent::__construct();
 
-        BackendMenu::setContext('Jlab.Users', 'users', input('role') ? : 'users');
+        BackendMenu::setContext('Ocs.Users', 'users', input('role') ? : 'users');
 
-        $this->addCss("/plugins/jlab/users/assets/css/users.css");
+        $this->addCss("/plugins/ocs/users/assets/css/users.css");
     }
 
     public function index()
@@ -44,8 +44,19 @@ class Users extends Controller
         $this->asExtension('ListController')->index();
     }
 
+    public function create()
+    {
+        $this->bodyClass = 'compact-container';
+
+        $this->pageTitle = 'Users';
+
+        $this->asExtension('FormController')->create();
+    }
+
     public function update($recordId, $context = null)
     {
+        $this->bodyClass = 'compact-container';
+        
         $this->pageTitle = 'Edit User';
 
         return $this->asExtension('FormController')->update($recordId, $context);
@@ -54,7 +65,7 @@ class Users extends Controller
     public function trashed()
     {
         # Menu Context
-        BackendMenu::setContext('Jlab.Users', 'users', 'trashed');
+        BackendMenu::setContext('Ocs.Users', 'users', 'trashed');
 
         # Page Title
         $this->pageTitle = 'Trashed';
@@ -67,9 +78,9 @@ class Users extends Controller
 
     public function formBeforeCreate($model)
     {
-        if(Role::where('code',input('role'))->first())
+        if(RoleModel::where('code',input('role'))->first())
         {
-            $roleId = Role::where('code',input('role'))->first()->id;
+            $roleId = RoleModel::where('code',input('role'))->first()->id;
             $model->role_id = $roleId;
         }
     }
@@ -80,7 +91,7 @@ class Users extends Controller
 
         if(input('close') AND input('role'))
         {
-            return \Backend::redirect(input('role') ? "jlab/users/users?role=".input('role') : '');
+            return \Backend::redirect(input('role') ? "ocs/users/users?role=".input('role') : '');
         }
     }
 
@@ -90,7 +101,7 @@ class Users extends Controller
 
         if(input('close') AND input('role'))
         {
-            return \Backend::redirect(input('role') ? "jlab/users/users?role=".input('role') : '');
+            return \Backend::redirect(input('role') ? "ocs/users/users?role=".input('role') : '');
         }
     }
 
@@ -118,12 +129,23 @@ class Users extends Controller
         }
     }
 
-    public function onHardDelete ()
+    public function formExtendModel($model)
+    {
+
+        if(is_null($model->ocsUser))
+        {
+            $model->ocsUser = new UserModel;
+        }
+
+        return $model;
+    }
+
+    public function onHardDelete()
     {
         /*
          * Delete records
          */
-        $records = User::withTrashed()->find(input('checked'));
+        $records = \Backend\Models\User::withTrashed()->find(input('checked'));
 
         if ($records->count()) {
             foreach ($records as $record) {
@@ -141,26 +163,26 @@ class Users extends Controller
 
     public static function getSideMenus()
     {
-        $role = Role::all();
+        $role = RoleModel::all();
 
         $role = $role->pluck('name','code')->except(['publisher','developer']);
 
         $sideMenu = $role->map(function ($item, $key) {
             return [
                 'label' => $item,
-                'url'   => \Backend::url('jlab/users/users?role='.$key),
+                'url'   => \Backend::url('ocs/users/users?role='.$key),
                 'icon'  => 'icon-user-circle-o',
             ];
         });
 
         $sideMenu->put('role', [
             'label' => 'Role',
-            'url'   => \Backend::url('jlab/users/role'),
+            'url'   => \Backend::url('ocs/users/role'),
             'icon'  => 'icon-user-plus'
         ]);
         $sideMenu->put('trashed', [
             'label' => 'Trashed',
-            'url'   => \Backend::url('jlab/users/users/trashed'),
+            'url'   => \Backend::url('ocs/users/users/trashed'),
             'icon'  => 'icon-trash'
         ]);
 

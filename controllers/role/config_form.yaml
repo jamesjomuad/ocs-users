@@ -6,25 +6,25 @@
 name: Role
 
 # Model Form Field configuration
-form: $/jlab/users/models/role/fields.yaml
+form: $/ocs/users/models/role/fields.yaml
 
 # Model Class name
-modelClass: Jlab\Users\Models\Role
+modelClass: Ocs\Users\Models\Role
 
 # Default redirect location
-defaultRedirect: jlab/users/role
+defaultRedirect: ocs/users/role
 
 # Create page
 create:
     title: Create Role
-    redirect: jlab/users/role/update/:id
-    redirectClose: jlab/users/role
+    redirect: ocs/users/role/update/:id
+    redirectClose: ocs/users/role
 
 # Update page
 update:
     title: Edit Role
-    redirect: jlab/users/role
-    redirectClose: jlab/users/role
+    redirect: ocs/users/role
+    redirectClose: ocs/users/role
 
 # Preview page
 preview:
